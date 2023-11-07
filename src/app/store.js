@@ -1,8 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import landInfoReducer from '../features/LandInfo/landInfoSlice';
+import landusersReducer from '../features/Landusers/landusersSlice';
+import { landInfoApi } from '../features/LandInfo/landInfoAPI';
+import { landusersApi } from '../features/Landusers/landusersAPI';
+import { landsApi } from '../features/Map/landsAPI';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    landInfo: landInfoReducer,
+    landusers: landusersReducer,
+    [landInfoApi.reducerPath]: landInfoApi.reducer,
+    [landusersApi.reducerPath]: landusersApi.reducer,
+    [landsApi.reducerPath]: landsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware()
+      .concat(landInfoApi.middleware)
+      .concat(landusersApi.middleware)
+      .concat(landsApi.middleware)
 });
+
+setupListeners(store.dispatch);

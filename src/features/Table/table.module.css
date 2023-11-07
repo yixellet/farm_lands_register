@@ -1,0 +1,10 @@
+.container {
+  width: 100vw;
+  height: 40vh;
+  background-color: rgb(240, 248, 255);
+  border-top: 1px rgb(156, 156, 156) solid;
+  box-shadow: 0 -5px 20px #00000028;
+  z-index: 10;
+  display: flex;
+  
+}

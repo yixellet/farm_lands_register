@@ -1,0 +1,10 @@
+.control_panel {
+  min-height: 200px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 -5px 20px #00000028;
+  border-radius: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}

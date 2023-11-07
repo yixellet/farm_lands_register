@@ -1,57 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState } from 'react';
+
+import {Map} from './features/Map/Map';
+import {Controls} from './features/Controls/Controls';
+import {Search} from './features/Search/Search';
+import {LandInfo} from './features/LandInfo/LandInfo';
+
+import styles from './App.module.css';
+import { useSelector } from 'react-redux';
+import { Landusers } from './features/Landusers/Landusers';
 
 function App() {
+  const landusersIsOpen = useSelector(state => state.landusers.isOpen);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <main className={styles.main}>
+      <Map />
+      <div className={styles.left_panel}>
+        <Controls />
+        <Search />
+      </div>
+      <div className={styles.right_panel}>
+        <LandInfo />
+        { landusersIsOpen && <Landusers />}
+      </div>
+    </main>
   );
 }
 
