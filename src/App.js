@@ -8,12 +8,15 @@ import {LandInfo} from './features/LandInfo/LandInfo';
 import styles from './App.module.css';
 import { useSelector } from 'react-redux';
 import { Landusers } from './features/Landusers/Landusers';
+import { Layer } from './features/Map/Layer';
 
 function App() {
   const landusersIsOpen = useSelector(state => state.landusers.isOpen);
   return (
     <main className={styles.main}>
-      <Map />
+      <Map>
+        <Layer />
+      </Map>
       <div className={styles.left_panel}>
         <Controls />
         <Search />

@@ -8,8 +8,9 @@ import { Layer } from './Layer';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { open } from '../LandInfo/landInfoSlice';
+import { addMap } from './MapSlice';
 
-export function Map() {
+export function Map(props) {
 
   const mapRef = useRef(null);
 
@@ -35,11 +36,12 @@ export function Map() {
 
   useEffect(() => {
     map.setTarget(mapRef.current);
+    dispatch(addMap(map));
   });
 
   return (
     <div ref={mapRef} className={styles.map} id='map'>
-      <Layer map={map} />
+      {props.children}
     </div>
   )
 }

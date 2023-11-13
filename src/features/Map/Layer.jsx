@@ -7,13 +7,13 @@ import Select from 'ol/interaction/Select';
 import { setCN, setCNtoNull } from '../LandInfo/landInfoSlice';
 import { useGetActualRentedLandsQuery } from './landsAPI';
 
-export const Layer = ({ map }) => {
+export const Layer = () => {
 
   const dispatch = useDispatch();
   const { data } = useGetActualRentedLandsQuery();
+  const map = useSelector(state => state.map.map);
   
   const [landsLayer, setLandsLayer] = useState(new Vector({
-    map: map,
     zIndex: 10,
     style: {
       'stroke-width': 0.75,
@@ -30,6 +30,10 @@ export const Layer = ({ map }) => {
     landsLayer.setSource(vectorSource)
   }
 
+  if (map) {
+    landsLayer.setMap(map)
+  }
+/*
   const featureOverlay = new Vector({
     source: new VectorSource(),
     map: map,
@@ -80,7 +84,7 @@ export const Layer = ({ map }) => {
       dispatch(setCNtoNull())
     }
   });
-
+*/
 
   return null;
 }
