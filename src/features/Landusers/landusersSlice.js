@@ -16,12 +16,15 @@ export const landusersSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
+    openClose: (state) => {
+      state.isOpen = !state.isOpen;
+    },
     setLanduser: (state, action) => {
       state.cn = action.payload
     },
   },
 });
 
-export const { open, close, setLanduser } = landusersSlice.actions;
+export const { open, close, openClose, setLanduser } = landusersSlice.actions;
 
 export default landusersSlice.reducer;

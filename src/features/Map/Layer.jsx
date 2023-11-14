@@ -1,39 +1,32 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import VectorSource from 'ol/source/Vector';
 import Vector from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
-import Select from 'ol/interaction/Select';
 import { setCN, setCNtoNull } from '../LandInfo/landInfoSlice';
 import { useGetActualRentedLandsQuery } from './landsAPI';
 
-export const Layer = () => {
+export const Layer = ({ map }) => {
 
   const dispatch = useDispatch();
-  const { data } = useGetActualRentedLandsQuery();
-  const map = useSelector(state => state.map.map);
-  
-  const [landsLayer, setLandsLayer] = useState(new Vector({
-    zIndex: 10,
-    style: {
-      'stroke-width': 0.75,
-      'stroke-color': 'red',
-      'fill-color': 'rgba(100,100,100,0.09)',
-    },
-  }))
-  
-  if (data) {
-    const vectorSource = new VectorSource({
-      format: new GeoJSON(),
-      url: 'http://localhost:8080/geoserver/farm_lands/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=farm_lands%3Aactual_rented_lands&outputFormat=application%2Fjson'
-    })
-    landsLayer.setSource(vectorSource)
-  }
 
-  if (map) {
-    landsLayer.setMap(map)
-  }
-/*
+  const { data, isSuccess } = useGetActualRentedLandsQuery();
+  
+  const [landsLayer, setL] = useState(new Vector({
+    zIndex: 10,
+    map: map,
+    style: {
+      'stroke-width': 0.5,
+      'stroke-color': 'black',
+      'fill-color': 'rgba(255,155,97,0.29)',
+    },
+  }));
+
+  if (isSuccess) {
+    const f = new GeoJSON().readFeatures(JSON.stringify(data));
+    landsLayer.setSource(new VectorSource({ features: f }))
+  };
+  
   const featureOverlay = new Vector({
     source: new VectorSource(),
     map: map,
@@ -79,12 +72,12 @@ export const Layer = () => {
     const pixel = map.getEventPixel(evt.originalEvent);
     const feat = landInfo(pixel);
     if (feat) {
-      dispatch(setCN(feat.get('cn')));
+      dispatch(setCN(feat.get('cadastral_number')));
     } else {
       dispatch(setCNtoNull())
     }
   });
-*/
+
 
   return null;
 }

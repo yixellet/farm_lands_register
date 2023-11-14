@@ -6,15 +6,12 @@ import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
 import { Layer } from './Layer';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { open } from '../LandInfo/landInfoSlice';
-import { addMap } from './MapSlice';
+import { Layer2 } from './Layer copy';
 
-export function Map(props) {
+export function Map() {
 
   const mapRef = useRef(null);
 
-  const dispatch = useDispatch()
 
   const [view, setView] = useState(new View({
     center: fromLonLat([46,47.15]),
@@ -36,12 +33,12 @@ export function Map(props) {
 
   useEffect(() => {
     map.setTarget(mapRef.current);
-    dispatch(addMap(map));
   });
 
   return (
     <div ref={mapRef} className={styles.map} id='map'>
-      {props.children}
+      <Layer map={map} />
+      <Layer2 map={map} />
     </div>
   )
 }
