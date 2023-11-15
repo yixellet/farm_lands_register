@@ -16,7 +16,7 @@ export const Landusers = () => {
         {
           data &&
           data.map(d => {
-            return <li key={d.uid}>{d.name}</li>
+            return <li key={d.uid} className={styles.item}>{d.name}</li>
           })
         }
       </ul>

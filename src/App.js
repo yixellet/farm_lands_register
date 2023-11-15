@@ -12,6 +12,7 @@ import { Layer } from './features/Map/Layer';
 import { LandsNotInEGRN } from './features/LandsNotInEGRN/LandsNotInEGRN';
 
 function App() {
+  const landInfoIsOpen = useSelector(state => state.landInfo.isOpen);
   const landusersIsOpen = useSelector(state => state.landusers.isOpen);
   const landsNotInEGRNIsOpen = useSelector(state => state.landsNotInEGRN.isOpen);
   return (
@@ -23,7 +24,7 @@ function App() {
         <Search />
       </div>
       <div className={styles.right_panel}>
-        <LandInfo />
+        { landInfoIsOpen && <LandInfo /> }
         { landusersIsOpen && <Landusers />}
       </div>
     </main>

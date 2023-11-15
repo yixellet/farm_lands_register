@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './landInfo.module.css'
-import { useGetAllRentInfoQuery, useGetLandInfoQuery } from './landInfoAPI';
-import { useState } from 'react';
-import { dateToStr } from '../../utils/dates';
+import { useGetLandInfoQuery } from './landInfoAPI';
+import { RentInfo } from '../RentInfo/RentInfo';
+import { openClose } from '../RentInfo/rentInfoSlice'
+import { close } from './landInfoSlice';
 
 export const LandInfo = () => {
+
   const dispatch = useDispatch();
-  const cn = useSelector(state => state.landInfo.cn);
+  const cadastral_number = useSelector(state => state.landInfo.cn);
   const skip = useSelector(state => state.landInfo.skip);
+  const isRentInfoOpen = useSelector(state => state.rentInfo.isOpen);
 
-  const [rentSkip, setRentSkip] = useState(true);
-
-  const { data, isSuccess, isloading } = useGetLandInfoQuery(cn, {skip})
-  const { data: rent, isSuccess: rentSuccess, isloading: rentLoading } = useGetAllRentInfoQuery(cn, {rentSkip})
+  const { data } = useGetLandInfoQuery(cadastral_number, {skip})
+  
   let info;
   if (data && data.length > 0) {
     info = 
@@ -29,19 +30,14 @@ export const LandInfo = () => {
   }
   return (
     <div className={styles.land_info}>
+      <button onClick={(e) => {e.preventDefault(); dispatch(close())}}>Закрыть</button>
       {
         info
       }
-      <button onClick={(e) => {e.preventDefault(); setRentSkip(false)}}>Сведения об аренде</button>
+      <button onClick={(e) => {e.preventDefault(); dispatch(openClose())}}>Сведения об аренде</button>
       {
-        rent &&
-        rent.map(r => {
-          return <div key={r.uid}>
-            <h3>{r.name}</h3>
-            <p>{r.use_type_class}</p>
-            <p>{dateToStr(r.rent_from_date)} - {dateToStr(r.rent_to_date)}</p>
-          </div>
-        })
+        isRentInfoOpen &&
+        <RentInfo />
       }
     </div>
   )

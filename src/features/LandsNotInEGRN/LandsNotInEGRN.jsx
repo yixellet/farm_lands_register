@@ -3,12 +3,18 @@ import styles from './LandsNotInEGRN.module.css'
 import { useDispatch } from 'react-redux'
 import { useGetLandsNotInEGRNQuery } from './LandsNotInEGRNAPI'
 import { close } from './LandsNotInEGRNSlice';
-import { setCN } from '../LandInfo/landInfoSlice';
+import { open, setCN } from '../LandInfo/landInfoSlice';
+import { open as ooo } from '../RentInfo/rentInfoSlice';
 
 export const LandsNotInEGRN = () => {
   const dispatch = useDispatch();
 
   const { data } = useGetLandsNotInEGRNQuery();
+  const rr = (c) => {
+    dispatch(setCN(c));
+    dispatch(open());
+    dispatch(ooo())
+  }
 
   return (
     <div className={styles.container}>
@@ -17,7 +23,7 @@ export const LandsNotInEGRN = () => {
         {
           data &&
           data.map(d => {
-            return <li key={d.cadastral_number} onClick={() => dispatch(setCN(d.cadastral_number))}>{d.cadastral_number}</li>
+            return <li key={d.cadastral_number} onClick={() => rr(d.cadastral_number)}>{d.cadastral_number}</li>
           })
         }
       </ul>

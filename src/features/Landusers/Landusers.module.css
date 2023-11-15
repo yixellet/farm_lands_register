@@ -1,5 +1,6 @@
 .container {
   min-height: 200px;
+  max-height: calc(100vh - 20px);
   width: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 -5px 20px #00000028;
@@ -7,9 +8,16 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .list {
   list-style-type: none;
-  overflow-y: scroll;
+  padding: 0;
+  margin: 5px;
+}
+
+.item {
+  font-size: .9rem;
+  margin-bottom: 5px;
 }

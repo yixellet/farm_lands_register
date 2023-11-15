@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const landInfoApi = createApi({
-  reducerPath: 'landInfoApi',
+export const rentInfoApi = createApi({
+  reducerPath: 'rentInfoApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5002/' }),
   endpoints: (builder) => ({
-    getLandInfo: builder.query({
-      query: (cn) => `lands?cn=${cn}`,
+    getAllRentInfo: builder.query({
+      query: (cn) => `rents?cn=${cn}`,
       transformResponse: (responseData) => responseData,
-    })
+    }),
   }),
 });
 
 export const {
-  useGetLandInfoQuery
-} = landInfoApi;
+  useGetAllRentInfoQuery
+} = rentInfoApi;

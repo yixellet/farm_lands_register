@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import VectorSource from 'ol/source/Vector';
 import Vector from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
-import { setCN, setCNtoNull } from '../LandInfo/landInfoSlice';
+import { open, setCN, setCNtoNull } from '../LandInfo/landInfoSlice';
 import { useGetActualRentedLandsQuery } from './landsAPI';
 
 export const Layer = ({ map }) => {
@@ -73,6 +73,7 @@ export const Layer = ({ map }) => {
     const feat = landInfo(pixel);
     if (feat) {
       dispatch(setCN(feat.get('cadastral_number')));
+      dispatch(open())
     } else {
       dispatch(setCNtoNull())
     }

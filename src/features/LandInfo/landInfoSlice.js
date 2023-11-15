@@ -16,6 +16,9 @@ export const landInfoSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
+    openClose: (state) => {
+      state.isOpen = !state.isOpen;
+    },
     setCN: (state, action) => {
       state.cn = action.payload
       state.skip = false
@@ -27,6 +30,6 @@ export const landInfoSlice = createSlice({
   },
 });
 
-export const { open, close, setCN, setCNtoNull } = landInfoSlice.actions;
+export const { open, close, openClose, setCN, setCNtoNull } = landInfoSlice.actions;
 
 export default landInfoSlice.reducer;
