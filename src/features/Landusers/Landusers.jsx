@@ -1,7 +1,7 @@
 /* Instruments */
 import styles from './Landusers.module.css'
 import { useDispatch } from 'react-redux'
-import { close, open } from './landusersSlice'
+import { close } from './landusersSlice'
 import { useGetLandusersQuery } from './landusersAPI'
 
 export const Landusers = () => {

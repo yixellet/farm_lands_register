@@ -8,9 +8,14 @@ export const rentInfoApi = createApi({
       query: (cn) => `rents?cn=${cn}`,
       transformResponse: (responseData) => responseData,
     }),
+    getRentsByLanduser: builder.query({
+      query: (cn) => `rents/by_landuser?cn=${cn}`,
+      transformResponse: (responseData) => responseData,
+    }),
   }),
 });
 
 export const {
-  useGetAllRentInfoQuery
+  useGetAllRentInfoQuery,
+  useGetRentsByLanduserQuery
 } = rentInfoApi;
