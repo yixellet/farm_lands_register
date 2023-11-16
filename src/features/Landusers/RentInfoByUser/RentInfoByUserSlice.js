@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: null,
   isOpen: false,
+  lands: [],
 };
 
 export const rentInfoByUserSlice = createSlice({
