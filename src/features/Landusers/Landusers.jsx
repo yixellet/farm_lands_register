@@ -3,6 +3,7 @@ import styles from './Landusers.module.css'
 import { useDispatch } from 'react-redux'
 import { close } from './landusersSlice'
 import { useGetLandusersQuery } from './landusersAPI'
+import { RentInfoByUser } from './RentInfoByUser/RentInfoByUser'
 
 export const Landusers = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,7 @@ export const Landusers = () => {
       <ul className={styles.list}>
         {
           data &&
-          data.map(d => {
-            return <li key={d.uid} className={styles.item}>{d.name}</li>
-          })
+          data.map(d => { return <RentInfoByUser key={d.uid} user={d.name} uid={d.uid} /> })
         }
       </ul>
     </div>
