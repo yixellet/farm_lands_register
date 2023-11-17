@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: null,
   isOpen: false,
-  lands: [],
+  lands: null,
 };
 
 export const rentInfoByUserSlice = createSlice({
@@ -21,10 +21,13 @@ export const rentInfoByUserSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+    },
+    setLands: (state, action) => {
+      state.lands = action.payload;
     }
   },
 });
 
-export const { open, close, openClose, setUser } = rentInfoByUserSlice.actions;
+export const { open, close, openClose, setUser, setLands } = rentInfoByUserSlice.actions;
 
 export default rentInfoByUserSlice.reducer;

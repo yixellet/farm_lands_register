@@ -7,6 +7,7 @@ import { fromLonLat } from "ol/proj";
 import { Layer } from './Layer';
 import { useEffect, useRef, useState } from 'react';
 import { Layer2 } from './Layer copy';
+import { Layer3 } from './Layer copy 2';
 
 export function Map() {
 
@@ -39,6 +40,7 @@ export function Map() {
     <div ref={mapRef} className={styles.map} id='map'>
       <Layer map={map} />
       <Layer2 map={map} />
+      <Layer3 map={map} />
     </div>
   )
 }

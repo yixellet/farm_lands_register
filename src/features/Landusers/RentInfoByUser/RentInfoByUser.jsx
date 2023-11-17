@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './rentInfoByUser.module.css'
 import { useGetRentsByLanduserQuery } from './RentInfoByUserAPI';
 import { dateToStr } from '../../../utils/dates';
-import { openClose, setUser } from './RentInfoByUserSlice';
+import { openClose, setLands, setUser } from './RentInfoByUserSlice';
 import { useState } from 'react';
 
 export const RentInfoByUser = ({ user, uid }) => {
@@ -11,9 +11,7 @@ export const RentInfoByUser = ({ user, uid }) => {
   const [skip, setSkip] = useState(true);
   const isOpen = useSelector(state => state.rentInfoByUser.isOpen);
   const uu = useSelector(state => state.rentInfoByUser.user);
-  
   const { data } = useGetRentsByLanduserQuery(user, {skip});
-  console.log(data)
   return (
     <li className={styles.item}>
       <h2 className={styles.name} 

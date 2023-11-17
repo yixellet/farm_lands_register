@@ -8,9 +8,14 @@ export const rentInfoByUserApi = createApi({
       query: (user) => `rents/by_landuser?user=${user}`,
       transformResponse: (responseData) => responseData,
     }),
+    getRentsGeomByLanduser: builder.query({
+      query: (user) => `rents/by_landuser/geom?user=${user}`,
+      transformResponse: (responseData) => responseData,
+    }),
   }),
 });
 
 export const {
-  useGetRentsByLanduserQuery
+  useGetRentsByLanduserQuery,
+  useGetRentsGeomByLanduserQuery
 } = rentInfoByUserApi;
