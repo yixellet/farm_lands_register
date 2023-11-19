@@ -2,14 +2,47 @@
   min-height: 200px;
   width: 100%;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 -5px 20px #00000028;
   border-radius: 20px;
   z-index: 20;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .list {
   list-style-type: none;
   overflow-y: scroll;
+  padding: 0;
+  margin: 10px;
+}
+
+.closeButton {
+  background-color: rgb(50, 50, 167);
+  color: #fff;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  padding: 0 10px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: rgb(95, 95, 187);
+  box-shadow: 0 5px 10px #0000005e;
+}
+
+.closeButton:active {
+  background-color: rgb(14, 14, 129);
+}
+
+.cn_item {
+  margin: 10px 0;
+}
+
+.cn_item:hover {
+  cursor: pointer;
+  background-color: rgb(232, 232, 255);
 }

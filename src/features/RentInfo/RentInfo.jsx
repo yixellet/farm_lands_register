@@ -10,17 +10,16 @@ export const RentInfo = () => {
   const { data } = useGetAllRentInfoQuery(cn)
 
   return (
-    <div className={styles.land_info}>
+    <ol className={styles.rent_info}>
       {
         data &&
         data.map(r => {
-          return <div key={r.uid}>
-            <h3>{r.name}</h3>
-            <p>{r.use_type_class}</p>
+          return <li key={r.uid} className={styles.item}>
+            <h3 className={styles.landuser}>{r.name}</h3>
             <p>{dateToStr(r.rent_from_date)} - {dateToStr(r.rent_to_date)}</p>
-          </div>
+          </li>
         })
       }
-    </div>
+    </ol>
   )
 }

@@ -13,7 +13,6 @@ export function Map() {
 
   const mapRef = useRef(null);
 
-
   const [view, setView] = useState(new View({
     center: fromLonLat([46,47.15]),
     zoom: 8,

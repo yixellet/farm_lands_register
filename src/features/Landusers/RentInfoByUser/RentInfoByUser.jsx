@@ -5,7 +5,7 @@ import { dateToStr } from '../../../utils/dates';
 import { openClose, setLands, setUser } from './RentInfoByUserSlice';
 import { useState } from 'react';
 
-export const RentInfoByUser = ({ user, uid }) => {
+export const RentInfoByUser = ({ user, type }) => {
 
   const dispatch = useDispatch();
   const [skip, setSkip] = useState(true);
@@ -13,24 +13,26 @@ export const RentInfoByUser = ({ user, uid }) => {
   const uu = useSelector(state => state.rentInfoByUser.user);
   const { data } = useGetRentsByLanduserQuery(user, {skip});
   return (
-    <li className={styles.item}>
+    <li className={type === 'act' ? styles.item_act : styles.item_non_act}>
       <h2 className={styles.name} 
         onClick={(e) => {
           setSkip(false); 
           dispatch(openClose()); 
           dispatch(setUser(e.target.textContent))
         }}>{user}</h2>
-      {
-        isOpen && (uu === user) && data &&
-        data.map((rent) => {
-          return <div key={rent.json_build_object.id}>
-            <h4>{rent.json_build_object.properties.l.cadastral_number}</h4>
-            <p>{rent.json_build_object.properties.l.area}</p>
-            <p>{rent.json_build_object.properties.l.use_type_text}</p>
-            <p>{dateToStr(rent.json_build_object.properties.r.rent_from_date)} - {dateToStr(rent.json_build_object.properties.r.rent_to_date)}</p>
-          </div>
-        })
-      }
+      <ul className={styles.lands_list}>
+        {
+          isOpen && (uu === user) && data &&
+          data.map((rent) => {
+            return <li key={rent.json_build_object.id} className={styles.land_item}>
+              <h4 className={styles.cn}>{rent.json_build_object.properties.l.cadastral_number}</h4>
+              <p className={styles.text}>{rent.json_build_object.properties.l.area} кв.м.</p>
+              <p className={styles.text}>{rent.json_build_object.properties.l.use_type_text}</p>
+              <p className={styles.text}>{dateToStr(rent.json_build_object.properties.r.rent_from_date)} - {dateToStr(rent.json_build_object.properties.r.rent_to_date)}</p>
+            </li>
+          })
+        }
+      </ul>
     </li>
   )
 }

@@ -5,5 +5,39 @@
   
 .name:hover {
   cursor: pointer;
-  color: blue;
+  background-color: rgb(232, 232, 255);
+}
+
+.item_act {
+  background-color: rgba(255,155,97,0.29);
+}
+
+.item_non_act {
+  background-color: #0000002d;
+}
+
+.item_open {
+  background-color: rgb(67, 67, 167);
+  color: #fff;
+}
+
+.lands_list {
+  list-style-type: none;
+  padding: 0;
+  background-color: rgb(232, 232, 255);
+  margin: 0;
+  color: #000
+}
+
+.land_item {
+  margin: 10px 0 30px 0;
+}
+
+.cn {
+  margin: 0;
+}
+
+.text {
+  margin: 5px;
+  font-size: .9rem;
 }

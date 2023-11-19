@@ -14,5 +14,27 @@
 .list {
   list-style-type: none;
   padding: 0;
-  margin: 5px;
+  margin: 30px 10px 10px 10px;
+}
+
+.closeButton {
+  background-color: rgb(50, 50, 167);
+  color: #fff;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  padding: 0 10px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: rgb(95, 95, 187);
+  box-shadow: 0 5px 10px #0000005e;
+}
+
+.closeButton:active {
+  background-color: rgb(14, 14, 129);
 }

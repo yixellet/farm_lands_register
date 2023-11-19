@@ -18,12 +18,12 @@ export const LandsNotInEGRN = () => {
 
   return (
     <div className={styles.container}>
-      <button onClick={(e) => {e.preventDefault(); dispatch(close())}}>Закрыть</button>
+      <button className={styles.closeButton} onClick={(e) => {e.preventDefault(); dispatch(close())}}>Закрыть</button>
       <ul className={styles.list}>
         {
           data &&
           data.map(d => {
-            return <li key={d.cadastral_number} onClick={() => rr(d.cadastral_number)}>{d.cadastral_number}</li>
+            return <li className={styles.cn_item} key={d.cadastral_number} onClick={() => rr(d.cadastral_number)}>{d.cadastral_number}</li>
           })
         }
       </ul>

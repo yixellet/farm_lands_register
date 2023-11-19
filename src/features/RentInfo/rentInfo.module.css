@@ -1,0 +1,11 @@
+.rent_info {
+  background-color: rgb(232, 232, 255);
+  margin: 0 10px 10px 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.item {
+  margin: 10px 10px 40px 10px;
+  font-size: 0.9rem;
+}
