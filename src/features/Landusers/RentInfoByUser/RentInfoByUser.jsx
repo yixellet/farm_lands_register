@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './rentInfoByUser.module.css'
 import { useGetRentsByLanduserQuery } from './RentInfoByUserAPI';
 import { dateToStr } from '../../../utils/dates';
-import { openClose, setLands, setUser } from './RentInfoByUserSlice';
+import { open, close, setLands, setUser } from './RentInfoByUserSlice';
 import { useState } from 'react';
 
 export const RentInfoByUser = ({ user, type }) => {
@@ -16,9 +16,15 @@ export const RentInfoByUser = ({ user, type }) => {
     <li className={type === 'act' ? styles.item_act : styles.item_non_act}>
       <h2 className={styles.name} 
         onClick={(e) => {
-          setSkip(false); 
-          dispatch(openClose()); 
-          dispatch(setUser(e.target.textContent))
+          if (e.target.textContent === uu) {
+            setSkip(true); 
+            dispatch(close()); 
+            dispatch(setUser(null))
+          } else {
+            setSkip(false); 
+            dispatch(open()); 
+            dispatch(setUser(e.target.textContent))
+          }
         }}>{user}</h2>
       <ul className={styles.lands_list}>
         {

@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+const { host, port } = require('../../config/api.config');
+
 export const landusersApi = createApi({
   reducerPath: 'landusersApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5002/users' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `http://${host}:${port}/users` }),
   endpoints: (builder) => ({
     getActualLandusers: builder.query({
       query: () => `actual`,

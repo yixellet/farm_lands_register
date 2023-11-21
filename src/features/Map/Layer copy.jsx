@@ -4,6 +4,8 @@ import Vector from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import { useSelector } from 'react-redux';
 
+const { host, port } = require('../../config/mapserver.config');
+
 export const Layer2 = ({ map }) => {
 
   const archive = useSelector(state => state.controls.archive);
@@ -22,7 +24,7 @@ export const Layer2 = ({ map }) => {
   useEffect(() => {
     landsLayer.setSource(new VectorSource({
       format: new GeoJSON(),
-      url: 'http://localhost:8080/geoserver/invent/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=invent%3Anon_actual_rented_lands&outputFormat=application%2Fjson'
+      url: `http://${host}:${port}/geoserver/invent/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=invent%3Anon_actual_rented_lands&outputFormat=application%2Fjson`
     }))
   }, [landsLayer])
   

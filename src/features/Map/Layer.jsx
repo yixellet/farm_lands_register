@@ -7,6 +7,8 @@ import { open, close as clll, setCN, setCNtoNull } from '../LandInfo/landInfoSli
 import { close } from '../Landusers/landusersSlice';
 import { close as ww } from '../LandsNotInEGRN/LandsNotInEGRNSlice';
 
+const { host, port } = require('../../config/mapserver.config');
+
 export const Layer = ({ map }) => {
 
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ export const Layer = ({ map }) => {
   useEffect(() => {
     landsLayer.setSource(new VectorSource({
       format: new GeoJSON(),
-      url: 'http://localhost:8080/geoserver/invent/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=invent%3Aactual_rented_lands&outputFormat=application%2Fjson'
+      url: `http://${host}:${port}/geoserver/invent/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=invent%3Aactual_rented_lands&outputFormat=application%2Fjson`
     }))
   },[landsLayer])
   
