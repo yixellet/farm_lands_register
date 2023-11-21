@@ -10,11 +10,13 @@ import { useSelector } from 'react-redux';
 import { Landusers } from './features/Landusers/Landusers';
 import { Layer } from './features/Map/Layer';
 import { LandsNotInEGRN } from './features/LandsNotInEGRN/LandsNotInEGRN';
+import { NewRecordForm } from './features/NewRecordForm/NewRecordForm';
 
 function App() {
   const landInfoIsOpen = useSelector(state => state.landInfo.isOpen);
   const landusersIsOpen = useSelector(state => state.landusers.isOpen);
   const landsNotInEGRNIsOpen = useSelector(state => state.landsNotInEGRN.isOpen);
+  const newRecordFormIsOpen = useSelector(state => state.newRecordForm.isOpen);
   return (
     <main className={styles.main}>
       <Map />
@@ -27,6 +29,7 @@ function App() {
         { landInfoIsOpen && <LandInfo /> }
         { landusersIsOpen && <Landusers />}
       </div>
+      { newRecordFormIsOpen && <NewRecordForm />}
     </main>
   );
 }

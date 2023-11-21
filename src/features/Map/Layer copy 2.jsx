@@ -45,6 +45,6 @@ export const Layer3 = ({ map }) => {
         landsLayer.setSource(null)
       }
     }
-  })
+  }, [data, user, landsLayer])
   return null;
 }
