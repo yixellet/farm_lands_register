@@ -7,20 +7,30 @@ export const NewRecordForm = () => {
       <form className={styles.form}>
         <h1 className={styles.header}>Новая запись</h1>
         <div className={styles.fields}>
-          <div>
-            <label htmlFor='contract'>Договор аренды</label>
-            <input type='text' name='contract' />
-          </div>
-          <fieldset>
-            <legend>Срок аренды</legend>
-            Начало: <input type='date' />
-            Окончание: <input type='date' />
+          <fieldset className={styles.fieldset}>
+            <legend>Договор</legend>
+            Номер <input type='text' />
+            Дата <input type='date' />
           </fieldset>
-        </div>
+          <fieldset className={styles.fieldset}>
+            <legend>Срок</legend>
+            Начало <input type='date' />
+            Окончание <input type='date' />
+          </fieldset>
           <div>
             <label htmlFor='user'>Арендатор</label>
             <input type='text' name='user' />
           </div>
+          <fieldset className={styles.fieldset}>
+            <legend>Земельный участок</legend>
+            Кадастровый номер <input type='text' />
+            Кадастровая выписка (XML-файл) <input type='file' accept='xml' />
+          </fieldset>
+        </div>
+        <div className={styles.buttons_container}>
+          <input type='reset' />
+          <input type='submit' />
+        </div>
       </form>
     </div>
   )
